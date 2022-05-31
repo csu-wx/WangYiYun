@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_player"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/player_controls"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="@string/start_time"
+            android:textColor="@color/bottom_text_color"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/seekbar_controller"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/player_controls"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/bottom_text_color"
+            android:fitsSystemWindows="true"
+            android:progressTint="@color/bottom_text_color"
+            android:thumbTint="@color/bottom_text_color" />
+
+        <TextView
+            android:id="@+id/tv_total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="@string/final_time"
+            android:textColor="@color/bottom_text_color"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/player_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.example.pages.CircleImageView
+            android:id="@+id/img_btn_music_msg"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:src="@drawable/night"
+            app:border_width="2dp"
+            app:border_color="@color/white" />
+
+
+        <LinearLayout
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_music_name"
+                    android:layout_width="90dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:text="My Love"
+                    android:textSize="15dp"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"/>
+
+                <TextView
+                    android:id="@+id/text_singer_name"
+                    android:layout_width="90dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:text="Westlife"
+                    android:textSize="12dp"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
+                    />
+            </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/img_btn_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/previous_icon" />
+
+        <ImageButton
+            android:id="@+id/img_btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/play_icon" />
+
+        <ImageButton
+            android:id="@+id/img_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/next_icon" />
+
+        <ImageButton
+            android:id="@+id/img_btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@drawable/ic_settings" />
+    </LinearLayout>
+
+</RelativeLayout>
