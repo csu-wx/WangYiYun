@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MineFragmentFolder.SelfBuildMusicFragment">
+
+    <LinearLayout
+        android:id="@+id/自建歌单"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/create_song_menu"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="@color/transparent"
+            android:drawableStart="@drawable/mine_create_song_menu_button"
+            android:paddingLeft="26dp"
+            android:paddingRight="220dp"
+            android:text="@string/mine_create_song_menu"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/import_song_menu"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="@color/transparent"
+            android:drawableStart="@drawable/mine_import_song_menu_button"
+            android:paddingLeft="26dp"
+            android:paddingRight="200dp"
+            android:text="@string/mine_import_song_menu"
+            android:textSize="12sp" />
+
+        <ListView
+            android:id="@+id/listView_self_build_music_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/import_song_menu"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </LinearLayout>
+</LinearLayout>
