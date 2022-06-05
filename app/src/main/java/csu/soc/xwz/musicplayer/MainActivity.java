@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     //实例化helper对象
     SQLiteOpenHelper musicPlayerDatabaseHelper = new MusicPlayerHelper(this);
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         initPager();
         //初始化选项卡
         initTabsText();
+
         musicImageButton = findViewById(R.id.img_btn_music_msg);
         //设置音乐图片按钮点击事件
         setOnMusicImageButtonClick();
-
         //获得数据库（只读）的引用 写在try的（）里Java会自动将引用离开try } 时自动关闭
         try (SQLiteDatabase db = musicPlayerDatabaseHelper.getReadableDatabase()){
             //TODO read database

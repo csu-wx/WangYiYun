@@ -9,13 +9,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 
 import csu.soc.xwz.musicplayer.MineFragmentFolder.CollectMusicFragment;
 import csu.soc.xwz.musicplayer.MineFragmentFolder.SelfBuildMusicFragment;
@@ -28,6 +28,7 @@ public class MineFragment extends Fragment implements View.OnClickListener{
     private SelfBuildMusicFragment selfBuildMusicFragment;
     private Context mainActivity;
     private Button logButton;
+    private TextView textView;
 
     private RadioGroup twoGrop;
     protected RadioButton selfButton,collectButton;
@@ -56,6 +57,14 @@ public class MineFragment extends Fragment implements View.OnClickListener{
                 startActivity(intent);
             }
         });
+
+        textView = getActivity().findViewById(R.id.userName);
+        if (getActivity().getIntent().hasExtra("userName")){
+            textView.setText("欢迎 admin!");
+            logButton.setVisibility(View.INVISIBLE);
+        }else {
+            textView.setText(R.string.mine_un_log);
+        }
     }
     // 设置默认fragment
     private void setDefaultFragment() {
@@ -94,5 +103,4 @@ public class MineFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_mine, null);
         return view;
     }
-
 }
