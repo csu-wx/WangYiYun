@@ -20,6 +20,8 @@
     <string name="mine_transceiver">我的电台</string>
     <string name="mine_create_song_menu">创建歌单</string>
     <string name="mine_import_song_menu">导入外部歌单</string>
+    <string name="self_build_music_menu">自建歌单</string>
+    <string name="collect_music_menu">收藏歌单</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

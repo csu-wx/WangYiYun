@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:tabGravity="fill"
+        app:tabIndicatorColor="@color/topTab"
         app:tabIndicator="@drawable/tab_indicator"
         app:tabIndicatorGravity="stretch"
         app:tabMode="fixed"
