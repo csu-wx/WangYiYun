@@ -5,9 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
+import com.example.pages.R;
 import com.example.pages.entity.Album;
 import com.example.pages.entity.Directory;
 import com.example.pages.entity.Music;
@@ -26,9 +30,9 @@ public class MusicResolver {
     private Singer singer;
     private Directory directory;
     public static ArrayList<Music> musicArrayList;
-    private static ArrayList<Album> albumArrayList;
-    private static ArrayList<Singer> singerArrayList;
-    private static ArrayList<Directory> directoryArrayList;
+    public static ArrayList<Album> albumArrayList;
+    public static ArrayList<Singer> singerArrayList;
+    public static ArrayList<Directory> directoryArrayList;
 
     //获取本地音乐的基本信息
     public ArrayList<Music> getMusic(Context context) {
@@ -72,11 +76,17 @@ public class MusicResolver {
                 musicInfo.setUrl(cursor.getString(cursor
                         .getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)));
 
+                //专辑封面
+                musicInfo.setAlbumBitmap(getAlbumArt(musicInfo.getUrl(),context));
+
                 musicArrayList.add(musicInfo);
             }
         }
 
         cursor.close();
+
+        Log.e("歌曲总数",musicArrayList.size()+"");
+
         return musicArrayList;
     }
 
@@ -118,7 +128,7 @@ public class MusicResolver {
 
     //根据获得的album list，返回singer list
     public ArrayList<Singer> getSinger() {
-        singerArrayList = new ArrayList<>(musicArrayList.size());
+        singerArrayList = new ArrayList<>();
 
         //记录歌手对应的music
         HashMap<String, ArrayList<Music>> map = new HashMap<>(albumArrayList.size());
@@ -159,7 +169,7 @@ public class MusicResolver {
 
     //根据music list获取文件夹list
     public ArrayList<Directory> getDirectory() {
-        directoryArrayList = new ArrayList<>(musicArrayList.size());
+        directoryArrayList = new ArrayList<>();
 
         HashMap<String,ArrayList<Music>> map = new HashMap<>(musicArrayList.size());
 
@@ -195,5 +205,48 @@ public class MusicResolver {
 
         return directoryArrayList;
     }
+
+    //获取专辑图片的方法,path是音乐完整路径
+    private Bitmap getAlbumArt(String path,Context context) {
+        //歌曲检索
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        //设置数据源
+        mmr.setDataSource(path);
+        //获取图片数据
+        byte[] data = mmr.getEmbeddedPicture();
+        Bitmap albumPicture = null;
+        if (data != null) {
+            //获取bitmap对象
+            albumPicture = BitmapFactory.decodeByteArray(data, 0, data.length);
+            //获取宽高
+            int width = albumPicture.getWidth();
+            int height = albumPicture.getHeight();
+            // 创建操作图片用的Matrix对象
+            Matrix matrix = new Matrix();
+            // 计算缩放比例
+            float sx = ((float) 120 / width);
+            float sy = ((float) 120 / height);
+            // 设置缩放比例
+            matrix.postScale(sx, sy);
+            // 建立新的bitmap，其内容是对原bitmap的缩放后的图
+            albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
+        } else {
+            //从歌曲文件读取不出来专辑图片时用来代替的默认专辑图片
+            albumPicture = BitmapFactory.decodeResource(context.getResources(), R.drawable.music);
+            int width = albumPicture.getWidth();
+            int height = albumPicture.getHeight();
+            // 创建操作图片用的Matrix对象
+            Matrix matrix = new Matrix();
+            // 计算缩放比例
+            float sx = ((float) 120 / width);
+            float sy = ((float) 120 / height);
+            // 设置缩放比例
+            matrix.postScale(sx, sy);
+            // 建立新的bitmap，其内容是对原bitmap的缩放后的图
+            albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
+        }
+        return albumPicture;
+    }
+
 
 }

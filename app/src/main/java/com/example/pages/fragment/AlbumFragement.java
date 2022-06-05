@@ -8,12 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.pages.CharacterListView;
+import com.example.pages.myView.CharacterListView;
 import com.example.pages.R;
 import com.example.pages.adapter.AlbumAdapter;
 import com.example.pages.entity.Album;
@@ -130,8 +129,6 @@ public class AlbumFragement extends Fragment {
 
         //对数据根据首字母进行排序
         Collections.sort(albumArrayList, new AlbumLetterComparater());
-
-        Log.d("专辑名称",albumArrayList.get(1).getAlbumID());
 
         albumAdapter.setData(albumArrayList);
     }

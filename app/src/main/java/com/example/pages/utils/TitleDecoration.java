@@ -12,6 +12,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pages.adapter.AlbumAdapter;
+import com.example.pages.adapter.DetailAdapter;
 import com.example.pages.adapter.DirectoryAdapter;
 import com.example.pages.adapter.SingerAdapter;
 import com.example.pages.adapter.SingleSongAdapter;
@@ -95,6 +96,22 @@ public class TitleDecoration extends RecyclerView.ItemDecoration {
                 return;
             }
             DirectoryAdapter adapter = (DirectoryAdapter) parent.getAdapter();
+            if (adapter.getMusicArrayList() == null || adapter.getMusicArrayList().isEmpty()) {
+                return;
+            }
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                final View child = parent.getChildAt(i);
+                int position = parent.getChildAdapterPosition(child);
+
+                if (titleAttachView(child, parent)) {
+                    drawTitleItem(c, parent, child, adapter.getSortLetters(position));
+                }
+            }
+        } else {
+            if (parent.getAdapter() == null || !(parent.getAdapter() instanceof DetailAdapter)) {
+                return;
+            }
+            DetailAdapter adapter = (DetailAdapter) parent.getAdapter();
             if (adapter.getMusicArrayList() == null || adapter.getMusicArrayList().isEmpty()) {
                 return;
             }
@@ -261,6 +278,43 @@ public class TitleDecoration extends RecyclerView.ItemDecoration {
                     mTitleTextPaint);
             c.restore();
         }
+        else {
+            if (parent.getAdapter() == null || !(parent.getAdapter() instanceof DetailAdapter)) {
+                return;
+            }
+            DetailAdapter adapter = (DetailAdapter) parent.getAdapter();
+            if (adapter.getMusicArrayList() == null || adapter.getMusicArrayList().isEmpty()) {
+                return;
+            }
+            View firstView = parent.getChildAt(0);
+            int firstAdapterPosition = parent.getChildAdapterPosition(firstView);
+            c.save();
+            //找到下一个标题对应的adapter position
+            int nextLetterAdapterPosition = adapter.getNextSortLetterPosition(firstAdapterPosition);
+            if (nextLetterAdapterPosition != -1) {
+                //下一个标题view index
+                int nextLettersViewIndex = nextLetterAdapterPosition - firstAdapterPosition;
+                if (nextLettersViewIndex < parent.getChildCount()) {
+                    View nextLettersView = parent.getChildAt(nextLettersViewIndex);
+                    final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) nextLettersView.getLayoutParams();
+                    int nextToTop = nextLettersView.getTop() - params.bottomMargin - parent.getPaddingTop();
+                    if (nextToTop < mTitleAttributes.mItemHeight * 2) {
+                        //有重叠
+                        c.translate(0, nextToTop - mTitleAttributes.mItemHeight * 2);
+                    }
+                }
+            }
+            mBackgroundPaint.setColor(mTitleAttributes.mBackgroundColor);
+            c.drawRect(parent.getPaddingLeft(), parent.getPaddingTop(), parent.getRight() - parent.getPaddingRight(),
+                    parent.getPaddingTop() + mTitleAttributes.mItemHeight, mBackgroundPaint);
+            mTitleTextPaint.setTextSize(mTitleAttributes.mTextSize);
+            mTitleTextPaint.setColor(mTitleAttributes.mTextColor);
+            c.drawText(adapter.getSortLetters(firstAdapterPosition),
+                    parent.getPaddingLeft() + firstView.getPaddingLeft() + mTitleAttributes.mTextPadding,
+                    TextDrawUtils.getTextBaseLineByCenter(parent.getPaddingTop() + mTitleAttributes.mItemHeight / 2, mTitleTextPaint),
+                    mTitleTextPaint);
+            c.restore();
+        }
 
     }
 
@@ -334,11 +388,24 @@ public class TitleDecoration extends RecyclerView.ItemDecoration {
             //第一个一定要空出区域 + 每个都和前面一个去做判断，不等于前一个则要空出区域
             return position == 0 ||
                     null != adapter.getMusicArrayList().get(position) && !adapter.getSortLetters(position).equals(adapter.getSortLetters(position - 1));
-        } else {
+        } else if (fragment.equals("directory")) {
             if (parent.getAdapter() == null || !(parent.getAdapter() instanceof DirectoryAdapter)) {
                 return false;
             }
             DirectoryAdapter adapter = (DirectoryAdapter) parent.getAdapter();
+            if (adapter.getMusicArrayList() == null || adapter.getMusicArrayList().isEmpty()) {
+                return false;
+            }
+            int position = parent.getChildAdapterPosition(view);
+            //第一个一定要空出区域 + 每个都和前面一个去做判断，不等于前一个则要空出区域
+            return position == 0 ||
+                    null != adapter.getMusicArrayList().get(position) && !adapter.getSortLetters(position).equals(adapter.getSortLetters(position - 1));
+
+        } else {
+            if (parent.getAdapter() == null || !(parent.getAdapter() instanceof DetailAdapter)) {
+                return false;
+            }
+            DetailAdapter adapter = (DetailAdapter) parent.getAdapter();
             if (adapter.getMusicArrayList() == null || adapter.getMusicArrayList().isEmpty()) {
                 return false;
             }

@@ -1,5 +1,6 @@
 package com.example.pages.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pages.R;
+import com.example.pages.activity.DetailActivity;
 import com.example.pages.entity.Singer;
 
 import java.util.ArrayList;
@@ -29,7 +31,10 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.MyViewHold
                 //点击可跳转到歌曲播放页面
                 @Override
                 public void onClick(View view) {
-
+                    Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                    intent.putExtra("title",toolbar.getTitle());
+                    intent.putExtra("type","singer");
+                    view.getContext().startActivity(intent);
                 }
             });
         }

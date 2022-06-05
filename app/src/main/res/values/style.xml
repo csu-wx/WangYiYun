@@ -5,12 +5,18 @@
         <item name="overlapAnchor">false</item>
     </style>
 
+<!--  歌曲列表的toolbar标题大小  -->
     <style name="Music.ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">17dp</item>
     </style>
 
     <style name="Music.ToolBar.SubTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">14dp</item>
+    </style>
+
+<!--  detailActivity的toolbar标题大小  -->
+    <style name="Detail.ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18dp</item>
     </style>
 
     <!-- 圆形图片 -->

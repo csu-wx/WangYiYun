@@ -1,4 +1,4 @@
-package com.example.pages;
+package com.example.pages.myView;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -16,6 +16,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.pages.R;
 import com.example.pages.utils.TextDrawUtils;
 
 import java.util.Arrays;

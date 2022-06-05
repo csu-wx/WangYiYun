@@ -1,4 +1,4 @@
-package com.example.pages;
+package com.example.pages.myView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,6 +15,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.example.pages.R;
 
 public class CircleImageView extends androidx.appcompat.widget.AppCompatImageView {
 

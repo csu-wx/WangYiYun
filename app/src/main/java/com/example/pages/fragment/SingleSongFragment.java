@@ -3,10 +3,6 @@ package com.example.pages.fragment;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,9 +20,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toolbar;
 
-import com.example.pages.CharacterListView;
+import com.example.pages.myView.CharacterListView;
 import com.example.pages.R;
-import com.example.pages.activity.LocalActivity;
 import com.example.pages.adapter.SingleSongAdapter;
 import com.example.pages.entity.Music;
 import com.example.pages.utils.LetterComparater;
@@ -131,13 +126,6 @@ public class SingleSongFragment extends Fragment {
 
         musicArrayList = resolver.getMusic(this.getContext());
 
-        //set封面
-        for (Music music : musicArrayList) {
-            music.setAlbumBitmap(getAlbumArt(music.getUrl()));
-        }
-
-        Log.d("URL",musicArrayList.get(0).getUrl());
-
         //对数据根据首字母进行排序
         Collections.sort(musicArrayList, new LetterComparater());
 
@@ -193,8 +181,6 @@ public class SingleSongFragment extends Fragment {
                 if (mFragmentCallBack != null) {
                     mFragmentCallBack.getPosition(position);
                     Log.d("fragment","position: " + position);
-                    LocalActivity localActivity = (LocalActivity) getActivity();
-                    localActivity.prevAndnextplaying(musicArrayList.get(position).getUrl());
                 }
             }
         });
@@ -220,47 +206,6 @@ public class SingleSongFragment extends Fragment {
         });
     }
 
-    //获取专辑图片的方法,path是音乐完整路径
-    private Bitmap getAlbumArt(String path) {
-        //歌曲检索
-        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        //设置数据源
-        mmr.setDataSource(path);
-        //获取图片数据
-        byte[] data = mmr.getEmbeddedPicture();
-        Bitmap albumPicture = null;
-        if (data != null) {
-            //获取bitmap对象
-            albumPicture = BitmapFactory.decodeByteArray(data, 0, data.length);
-            //获取宽高
-            int width = albumPicture.getWidth();
-            int height = albumPicture.getHeight();
-            // 创建操作图片用的Matrix对象
-            Matrix matrix = new Matrix();
-            // 计算缩放比例
-            float sx = ((float) 120 / width);
-            float sy = ((float) 120 / height);
-            // 设置缩放比例
-            matrix.postScale(sx, sy);
-            // 建立新的bitmap，其内容是对原bitmap的缩放后的图
-            albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
-        } else {
-            //从歌曲文件读取不出来专辑图片时用来代替的默认专辑图片
-            albumPicture = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.music);
-            int width = albumPicture.getWidth();
-            int height = albumPicture.getHeight();
-            // 创建操作图片用的Matrix对象
-            Matrix matrix = new Matrix();
-            // 计算缩放比例
-            float sx = ((float) 120 / width);
-            float sy = ((float) 120 / height);
-            // 设置缩放比例
-            matrix.postScale(sx, sy);
-            // 建立新的bitmap，其内容是对原bitmap的缩放后的图
-            albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
-        }
-        return albumPicture;
-    }
 
     ///onAttach 当 Fragment 与 Activity 绑定时调用
     @Override

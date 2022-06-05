@@ -1,6 +1,6 @@
 package com.example.pages.adapter;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,22 +10,21 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pages.R;
+import com.example.pages.activity.DetailActivity;
 import com.example.pages.entity.Music;
-import com.example.pages.fragment.SingleSongFragment;
-import com.example.pages.utils.MusicResolver;
 
 import java.util.ArrayList;
 
-public class SingleSongAdapter extends RecyclerView.Adapter<SingleSongAdapter.MyViewHolder>{
-    ArrayList<Music> musicArrayList;
+public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.MyViewHolder>{
+    private ArrayList<Music> musicArrayList;
 
     public interface MyOnItemClickListener {
-        void OnItemClickListener(View itemView);
+        void OnItemClickListener(int postion);
     }
 
-    static MyOnItemClickListener myOnItemClickListener;
+    static DetailAdapter.MyOnItemClickListener myOnItemClickListener;
 
-    public void setMyOnItemClickListener(MyOnItemClickListener myOnItemClickListener) {
+    public void setMyOnItemClickListener(DetailAdapter.MyOnItemClickListener myOnItemClickListener) {
         this.myOnItemClickListener =  myOnItemClickListener;
     }
 
@@ -35,39 +34,36 @@ public class SingleSongAdapter extends RecyclerView.Adapter<SingleSongAdapter.My
 
         public MyViewHolder(View v) {
             super(v);
-            toolbar = v.findViewById(R.id.toolbar_item);
-            toolbar.inflateMenu(R.menu.music_item_menu);
+            toolbar = v.findViewById(R.id.detail_item);
+            toolbar.inflateMenu(R.menu.detail_item_menu);
+            //设置整个toolbar点击事件
             toolbar.setOnClickListener(new View.OnClickListener() {
+                //点击播放该歌曲
                 @Override
                 public void onClick(View view) {
-                    if(myOnItemClickListener != null) {
-                        myOnItemClickListener.OnItemClickListener(v);
-                    }
+                    myOnItemClickListener.OnItemClickListener(getPosition());
                 }
             });
         }
     }
 
-
     //通过contentResolver获取本地音乐，得到需要的内容传到这里来
-    public void setData(ArrayList<Music> myMusic) {
-       this.musicArrayList = myMusic;
+    public void setData(ArrayList<Music> music) {
+        this.musicArrayList = music;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DetailAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.music_item, parent, false);
-        MyViewHolder vh = new MyViewHolder(v);
+                .inflate(R.layout.detail_item, parent, false);
+        DetailAdapter.MyViewHolder vh = new DetailAdapter.MyViewHolder(v);
         return vh;
     }
 
     public ArrayList<Music> getMusicArrayList() {
         return musicArrayList;
     }
-
 
     public String getSortLetters(int position) {
         if (musicArrayList == null || musicArrayList.isEmpty()) {
@@ -106,10 +102,10 @@ public class SingleSongAdapter extends RecyclerView.Adapter<SingleSongAdapter.My
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder,int position) {
+    public void onBindViewHolder(DetailAdapter.MyViewHolder holder, int position) {
         //replace每个item中的内容，即每一行歌曲是一个toolbar，给toolbar中内容赋值
         holder.toolbar.setTitle(musicArrayList.get(position).getName());
-        holder.toolbar.setSubtitle(musicArrayList.get(position).getAuthor() + "  " +
+        holder.toolbar.setSubtitle(musicArrayList.get(position).getAuthor() + " " +
                 musicArrayList.get(position).getDuration());
         holder.toolbar.setNavigationIcon(new BitmapDrawable(holder.itemView.getContext().getResources()
                 ,musicArrayList.get(position).getAlbumBitmap()));
@@ -118,6 +114,6 @@ public class SingleSongAdapter extends RecyclerView.Adapter<SingleSongAdapter.My
     @Override
     public int getItemCount() {
         return musicArrayList == null? 0 : musicArrayList.size();
-//        return 1;
     }
+
 }

@@ -1,5 +1,7 @@
 package com.example.pages.adapter;
 
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +10,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pages.R;
+import com.example.pages.activity.DetailActivity;
 import com.example.pages.entity.Album;
 
 import java.util.ArrayList;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder>{
-    private ArrayList<Album> albumArrayList;
+    static ArrayList<Album> albumArrayList;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // 每个item
@@ -28,7 +31,10 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
                 //点击可跳转到歌曲播放页面
                 @Override
                 public void onClick(View view) {
-
+                    Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                    intent.putExtra("title",toolbar.getTitle());
+                    intent.putExtra("type","album");
+                    view.getContext().startActivity(intent);
                 }
             });
         }
@@ -95,6 +101,8 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
         holder.toolbar.setTitle(albumArrayList.get(position).getAlbumName());
         holder.toolbar.setSubtitle(albumArrayList.get(position).getNum() + " 首  " +
                 albumArrayList.get(position).getSinger());
+        holder.toolbar.setNavigationIcon(new BitmapDrawable(holder.itemView.getContext().getResources()
+                ,albumArrayList.get(position).getMusicArrayList().get(0).getAlbumBitmap()));
     }
 
     @Override
