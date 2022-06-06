@@ -6,24 +6,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.pages.fragment.SingleSongFragment;
 import com.example.pages.myView.CircleImageView;
 import com.example.pages.service.MusicService;
 import com.example.pages.R;
@@ -110,6 +120,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         ViewGroup mDecorView = (ViewGroup) getWindow().getDecorView();
         mContentContainer = (FrameLayout) ((ViewGroup) mDecorView.getChildAt(0)).getChildAt(1);
         mFloatView =  LayoutInflater.from(getBaseContext()).inflate(R.layout.player_layout, null);
@@ -119,7 +130,22 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 		MusicServiceIntent = new Intent(activity,MusicService.class);
 		//实现绑定操作
 		bindService(MusicServiceIntent, conn, BIND_AUTO_CREATE);
+
+//        /**
+//         * 半透明状态栏
+//         */
+//
+//        if (Build.VERSION.SDK_INT >= 21) {//21表示5.0
+//            View decorView = getWindow().getDecorView();
+//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            decorView.setSystemUiVisibility(option);
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//
+//        } else if (Build.VERSION.SDK_INT >= 19) {//19表示4.4
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        }
 		setContentView(mFloatView);
+		setupWindowAnimations();
 		bind();
     }
 
@@ -153,39 +179,30 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         settingButton.setOnClickListener(this);
 
         musicPicture = mFloatView.findViewById(R.id.img_btn_music_msg);
+
+        //点击下方播放栏可跳转到播放界面
+        mFloatView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                    Toast.makeText(BaseActivity.this,"播放列表为空",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(BaseActivity.activity, DetailPlayerActivity.class);
+                    startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(BaseActivity.this).toBundle());
+                }
+            }
+        });
+    }
+
+    private void setupWindowAnimations() {
+        Slide slide = (Slide) TransitionInflater.from(this).inflateTransition(R.transition.activity_slide);
+        getWindow().setEnterTransition(slide);
     }
 
     @Override
     public void onClick(View view) {
-        view = mFloatView;
-        switch (view.getId()) {
-            case R.id.img_btn_play:
-                if (myBinder.isPlaying()) {
-                    myBinder.pause();
-                    Log.e("点击暂停","监听到啦");
-//                    playerButton.setImageResource(R.drawable.play_icon);
-                } else {
-                    myBinder.play();
-//                    playerButton.setImageResource(R.drawable.play_pause);
-                }
-                break;
-            case R.id.img_btn_previous:
-                if (!myBinder.isPlaying()) {
-                    playerButton.setImageResource(R.drawable.play_pause);
-                }
-                myBinder.playPrev();
-                break;
 
-            case R.id.img_btn_next:
-                if (!myBinder.isPlaying()) {
-                    playerButton.setImageResource(R.drawable.play_pause);
-                }
-                myBinder.playNext();
-                break;
-
-            default:
-                break;
-        }
     }
 
     @Override
@@ -205,7 +222,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         overridePendingTransition(0, 0);//设置返回没有动画
         StaticValue.NowActivity = this;
         MusicServiceIntent = new Intent(this, MusicService.class);
-        startService(MusicServiceIntent);
+//        startService(MusicServiceIntent);
         bindService(MusicServiceIntent, conn, BIND_AUTO_CREATE);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(MusicService.MusicServiceReceiverAction);
@@ -214,6 +231,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         localBroadcastManager.registerReceiver(ui_receiver, intentFilter);
 
         if(myBinder != null) {
+            if(myBinder.getMusicList() != null && myBinder.getMusicList().size() > 0)
             updateView();
         }
 
@@ -226,7 +244,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /***
-     * 重点，设置这个可以实现前进Activity时候的无动画切换
+     * 设置这个可以实现前进Activity时候的无动画切换
      * @param intent
      */
     @Override
@@ -236,7 +254,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     *  重点，在这里设置按下返回键，或者返回button的时候无动画
+     *  在这里设置按下返回键，或者返回button的时候无动画
      */
     @Override
     public void finish(){
@@ -289,7 +307,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     /**
      *  广播接收器
      */
-    public class UI_Receiver extends BroadcastReceiver {
+    private class UI_Receiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent){
             int type = intent.getIntExtra(MusicService.BROADCAST.TYPE_TYPENAME,-2);

@@ -3,6 +3,16 @@
 <!--    设置toolbar的menu弹出菜单样式  -->
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
         <item name="overlapAnchor">false</item>
+
+        <!-- enable window content transitions -->
+        <item name="android:windowContentTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <!-- options are: explode, slide, fade -->
+        <item name="android:windowEnterTransition">@transition/activity_fade</item>
+        <item name="android:windowExitTransition">@transition/activity_slide</item>
+
+        <item name="android:statusBarColor">@color/white</item>
     </style>
 
 <!--  歌曲列表的toolbar标题大小  -->

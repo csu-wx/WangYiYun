@@ -5,11 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.annotation.DrawableRes;
+import androidx.core.content.ContextCompat;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.example.pages.R;
 import com.example.pages.entity.Album;
@@ -231,21 +239,39 @@ public class MusicResolver {
             // 建立新的bitmap，其内容是对原bitmap的缩放后的图
             albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
         } else {
-            //从歌曲文件读取不出来专辑图片时用来代替的默认专辑图片
-            albumPicture = BitmapFactory.decodeResource(context.getResources(), R.drawable.music);
-            int width = albumPicture.getWidth();
-            int height = albumPicture.getHeight();
-            // 创建操作图片用的Matrix对象
-            Matrix matrix = new Matrix();
-            // 计算缩放比例
-            float sx = ((float) 120 / width);
-            float sy = ((float) 120 / height);
-            // 设置缩放比例
-            matrix.postScale(sx, sy);
-            // 建立新的bitmap，其内容是对原bitmap的缩放后的图
-            albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
+//            //从歌曲文件读取不出来专辑图片时用来代替的默认专辑图片
+//            albumPicture = BitmapFactory.decodeResource(context.getResources(), R.drawable.music);
+//            int width = albumPicture.getWidth();
+//            int height = albumPicture.getHeight();
+//            // 创建操作图片用的Matrix对象
+//            Matrix matrix = new Matrix();
+//            // 计算缩放比例
+//            float sx = ((float) 120 / width);
+//            float sy = ((float) 120 / height);
+//            // 设置缩放比例
+//            matrix.postScale(sx, sy);
+//            // 建立新的bitmap，其内容是对原bitmap的缩放后的图
+//            albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
+
+            albumPicture = getBitmapFromDrawable(context,R.drawable.ic_music);
         }
         return albumPicture;
+    }
+    public static Bitmap getBitmapFromDrawable(Context context, @DrawableRes int drawableId) {
+        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
+
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        } else if (drawable instanceof VectorDrawable || drawable instanceof VectorDrawableCompat) {
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+
+            return bitmap;
+        } else {
+            throw new IllegalArgumentException("unsupported drawable type");
+        }
     }
 
 

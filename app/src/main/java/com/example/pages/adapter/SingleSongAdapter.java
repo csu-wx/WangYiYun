@@ -1,20 +1,32 @@
 package com.example.pages.adapter;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pages.R;
+import com.example.pages.activity.DetailPlayerActivity;
+import com.example.pages.activity.LocalActivity;
 import com.example.pages.entity.Music;
 import com.example.pages.fragment.SingleSongFragment;
 import com.example.pages.utils.MusicResolver;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SingleSongAdapter extends RecyclerView.Adapter<SingleSongAdapter.MyViewHolder>{
     ArrayList<Music> musicArrayList;
@@ -32,7 +44,6 @@ public class SingleSongAdapter extends RecyclerView.Adapter<SingleSongAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // 每个item
         public Toolbar toolbar;
-
         public MyViewHolder(View v) {
             super(v);
             toolbar = v.findViewById(R.id.toolbar_item);

@@ -2,12 +2,14 @@ package com.example.pages.fragment;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toolbar;
 
+import com.example.pages.activity.DetailPlayerActivity;
 import com.example.pages.myView.CharacterListView;
 import com.example.pages.R;
 import com.example.pages.adapter.SingleSongAdapter;
@@ -181,6 +184,10 @@ public class SingleSongFragment extends Fragment {
                 if (mFragmentCallBack != null) {
                     mFragmentCallBack.getPosition(position);
                     Log.d("fragment","position: " + position);
+                    Intent intent = new Intent();
+                    intent.setClass(v.getContext(), DetailPlayerActivity.class);
+                    intent.putExtra("locate",position);
+                    v.getContext().startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(SingleSongFragment.singleSongFragment.getActivity()).toBundle());
                 }
             }
         });

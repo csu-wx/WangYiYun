@@ -34,7 +34,7 @@
                 android:id="@+id/characer_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                android:layout_marginBottom="80dp"
                 android:stateListAnimator="@null" />
 
 <!--            <include-->

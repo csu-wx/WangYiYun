@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -19,10 +20,7 @@ import com.example.pages.entity.Singer;
 import com.example.pages.utils.MusicResolver;
 import com.example.pages.utils.StaticValue;
 import com.example.pages.utils.TitleDecoration;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DetailActivity extends BaseActivity{
     private ActivityDetailBinding binding;
@@ -59,7 +57,11 @@ public class DetailActivity extends BaseActivity{
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    myBinder.seekTo(progress);
+                    if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                        Toast.makeText(DetailActivity.this,"播放列表为空",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        myBinder.seekTo(progress);
                 }
             }
 
@@ -157,48 +159,47 @@ public class DetailActivity extends BaseActivity{
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_btn_play:
-                if (myBinder.isPlaying()) {
-                    myBinder.pause();
-                    Log.e("点击暂停","监听到啦");
-                } else {
-                    myBinder.play();
+                if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                    Toast.makeText(this,"播放列表为空",Toast.LENGTH_SHORT).show();
                 }
-                break;
+                else {
+                    if (myBinder.isPlaying()) {
+                        myBinder.pause();
+                        Log.e("点击暂停","监听到啦");
+                    } else {
+                        myBinder.play();
+                    }
+                    break;
+                }
+
             case R.id.img_btn_previous:
-                if (!myBinder.isPlaying()) {
-                    playerButton.setImageResource(R.drawable.play_pause);
+                if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                    Toast.makeText(this,"播放列表为空",Toast.LENGTH_SHORT).show();
                 }
-                myBinder.playPrev();
+                else {
+                    if (!myBinder.isPlaying()) {
+                        playerButton.setImageResource(R.drawable.play_pause);
+                    }
+                    myBinder.playPrev();
+                }
                 break;
 
             case R.id.img_btn_next:
-                if (!myBinder.isPlaying()) {
-                    playerButton.setImageResource(R.drawable.play_pause);
+                if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                    Toast.makeText(this,"播放列表为空",Toast.LENGTH_SHORT).show();
                 }
-                myBinder.playNext();
+                else {
+                    if (!myBinder.isPlaying()) {
+                        playerButton.setImageResource(R.drawable.play_pause);
+                    }
+                    myBinder.playNext();
+                }
                 break;
             default:
                 break;
         }
     }
 
-    //格式化数字
-    private String formatTime(int length) {
-        Date date = new Date(length);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");    //规定固定的格式
-        String totaltime = simpleDateFormat.format(date);
-        return totaltime;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        for (Music music : myBinder.getMusicList()
-        ) {
-            music.setPlaying(false);
-        }
-        myBinder.getMusicList().get(myBinder.getCurrentIndex()).setPlaying(true);
-    }
 
     @Override
     protected void onStop() {

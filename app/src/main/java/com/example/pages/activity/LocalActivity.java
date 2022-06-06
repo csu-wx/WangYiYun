@@ -490,10 +490,14 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
+import com.example.pages.databinding.ActivityLocalAtivityBinding;
 import com.example.pages.entity.Music;
 import com.example.pages.fragment.AlbumFragement;
 import com.example.pages.fragment.DirectoryFragment;
@@ -512,7 +516,6 @@ import java.util.ArrayList;
 public class LocalActivity extends BaseActivity implements SingleSongFragment.FragmentCallBack {
     //活动对象
     public static BaseActivity activity;
-
     private Toolbar localtoolbar;
 
     private ViewPager2 viewPager;
@@ -559,7 +562,12 @@ public class LocalActivity extends BaseActivity implements SingleSongFragment.Fr
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    myBinder.seekTo(progress);
+                    if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                        Toast.makeText(LocalActivity.this,"播放列表为空",Toast.LENGTH_SHORT).show();
+                        seekBar.setProgress(0);
+                    }
+                    else
+                        myBinder.seekTo(progress);
                 }
             }
 
@@ -573,6 +581,7 @@ public class LocalActivity extends BaseActivity implements SingleSongFragment.Fr
 
             }
         });
+
     }
 
     /** 绑定控件和监听事件 **/
@@ -625,27 +634,40 @@ public class LocalActivity extends BaseActivity implements SingleSongFragment.Fr
                 break;
 
             case R.id.img_btn_play:
-                if (myBinder.isPlaying()) {
-                    myBinder.pause();
-                    Log.e("点击暂停","监听到啦");
-//                    playerButton.setImageResource(R.drawable.play_icon);
-                } else {
-                    myBinder.play();
-//                    playerButton.setImageResource(R.drawable.play_pause);
+                if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                    Toast.makeText(this,"播放列表为空",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (myBinder.isPlaying()) {
+                        myBinder.pause();
+                        Log.e("点击暂停","监听到啦");
+                    } else {
+                        myBinder.play();
+                    }
                 }
                 break;
             case R.id.img_btn_previous:
-                if (!myBinder.isPlaying()) {
-                    playerButton.setImageResource(R.drawable.play_pause);
+                if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                    Toast.makeText(this,"播放列表为空",Toast.LENGTH_SHORT).show();
                 }
-                myBinder.playPrev();
+                else {
+                    if (!myBinder.isPlaying()) {
+                        playerButton.setImageResource(R.drawable.play_pause);
+                    }
+                    myBinder.playPrev();
+                }
                 break;
 
             case R.id.img_btn_next:
-                if (!myBinder.isPlaying()) {
-                    playerButton.setImageResource(R.drawable.play_pause);
+                if(myBinder.getMusicList() == null || myBinder.getMusicList().size() == 0) {
+                    Toast.makeText(this,"播放列表为空",Toast.LENGTH_SHORT).show();
                 }
-                myBinder.playNext();
+                else {
+                    if (!myBinder.isPlaying()) {
+                        playerButton.setImageResource(R.drawable.play_pause);
+                    }
+                    myBinder.playNext();
+                }
                 break;
             default:
                 break;

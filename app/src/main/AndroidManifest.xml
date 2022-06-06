@@ -13,20 +13,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pages">
+        <activity
+            android:name=".activity.DetailPlayerActivity"
+            android:exported="false" />
+
         <service
             android:name=".service.MusicService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".activity.DetailActivity"
-            android:exported="false" />
-        <!-- 设置父activity -->
+            android:exported="false" /> <!-- 设置父activity -->
         <!-- android:parentActivityName=".activity.LocalActivity" -->
         <activity
             android:name=".activity.MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.LocalActivity"
             android:exported="true">
