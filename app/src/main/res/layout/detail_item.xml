@@ -13,13 +13,13 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/music"
+        app:navigationIcon="@drawable/ic_music"
         app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:background="@drawable/layer_list_toolbar"
         app:subtitle="singer  time"
         app:subtitleTextColor="#B8B7B7"
         app:title="title"
         app:titleTextAppearance="@style/Music.ToolBar.TitleText"
-        app:titleTextColor="@drawable/toolbar_text_color_selector"
         app:subtitleTextAppearance="@style/Music.ToolBar.SubTitleText"/>
 <!--    设置后toolbar的背景为白色-->
     <!--        android:background="?attr/colorPrimary"-->

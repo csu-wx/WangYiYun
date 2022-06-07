@@ -447,7 +447,8 @@ public class TitleDecoration extends RecyclerView.ItemDecoration {
             mTextPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, context.getResources().getDisplayMetrics());
             mTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, context.getResources().getDisplayMetrics());
             mTextColor = Color.parseColor("#FF000000");
-            mBackgroundColor = Color.parseColor("#F5F5F5");
+//            mBackgroundColor = Color.parseColor("#F5F5F5");
+            mBackgroundColor = Color.parseColor("#FFFFFF");
         }
 
         public TitleAttributes setItemHeight(int heightDp) {

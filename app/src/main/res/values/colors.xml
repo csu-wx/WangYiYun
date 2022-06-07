@@ -12,4 +12,9 @@
     <color name="colorPrimary">#C1CEB5</color>
     <color name="bottom_text_color">#FFFFFF</color>
     <color name="player">#C1CEB5</color>
+
+    <color name="colorPrimaryDark">#63C1CEB5</color>
+
+    <color name="colorSeekBar">#91A56C</color>
+
 </resources>

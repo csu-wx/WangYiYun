@@ -52,7 +52,6 @@ public class DetailPlayerActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityDetailPlayerBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);

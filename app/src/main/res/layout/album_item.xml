@@ -13,6 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/album"
+        android:background="@drawable/layer_list_toolbar"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:subtitle="1首  singer"
         app:subtitleTextColor="#B8B7B7"
