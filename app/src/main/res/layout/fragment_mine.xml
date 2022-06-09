@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout_mine"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:orientation="vertical"
+    tools:context=".fragment.MineFragment">
+
+
+    <csu.soc.xwz.musicplayer.myView.CircleImageView
+        android:id="@+id/userImage"
+        android:layout_width="78dp"
+        android:layout_height="67dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/unselected"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/unlog" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/mine_un_log"
+        android:textAppearance="@style/MyBigTextAppearance"
+        app:layout_constraintLeft_toRightOf="@id/userImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/unLogTip"
+        android:layout_width="103dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="56dp"
+        android:background="#00000000"
+        android:button="@null"
+        android:text="@string/mine_un_log_msg"
+        android:textSize="12dp"
+        app:layout_constraintLeft_toRightOf="@id/userImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="67dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00000000"
+        android:scaleType="centerInside"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_mine_set"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintTop_toBottomOf="@id/userImage"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/divider">
+
+        <ImageButton
+            android:id="@+id/vipImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:srcCompat="@mipmap/vip"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/mine_linear_layout_color_set"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="2dp"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout1"
+        tools:layout_editor_absoluteX="16dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/local_music_btn"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="5dp"
+                android:background="@null"
+                android:drawableTop="@drawable/ic_music_local"
+                android:text="@string/music"
+                android:textColor="@color/littleGray"
+                android:textSize="16dp" />
+
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="5dp"
+                android:background="@null"
+                android:drawableTop="@drawable/mine_download_button"
+                android:text="@string/mine_download"
+                android:textColor="@color/littleGray"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="5dp"
+                android:background="@null"
+                android:drawableTop="@drawable/mine_purchased_button"
+                android:text="@string/mine_purchased"
+                android:textColor="@color/littleGray"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/recent_button"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="5dp"
+                android:background="@null"
+                android:drawableTop="@drawable/mine_recent_button"
+                android:text="@string/mine_recent"
+                android:textColor="@color/littleGray"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="5dp"
+                android:background="@null"
+                android:drawableTop="@drawable/mine_transceiver_button"
+                android:text="@string/mine_transceiver"
+                android:textColor="@color/littleGray"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="5dp"
+                android:background="@null"
+                android:drawableTop="@drawable/mine_collect_button"
+                android:text="@string/collect"
+                android:textColor="@color/littleGray"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/mine_constraint_layout_color_set"
+            android:padding="4dp">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="53dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@null"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@mipmap/like_music_play"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textView_my_like_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:text="@string/like_music"
+                android:textSize="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="4dp" />
+
+            <TextView
+                android:id="@+id/textView_my_like_music_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingStart="4dp"
+                android:text="@string/like_music_counts"
+                android:textSize="14dp"
+                app:layout_constraintTop_toBottomOf="@id/textView_my_like_music"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="4dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/radioLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+        <RadioGroup
+            android:id="@+id/redio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/self_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/self_build_music_menu"
+                android:textSize="16dp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/collect_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/collect_music_menu"
+                android:textSize="16dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        app:layout_constraintTop_toBottomOf="@id/radioLinearLayout">
+    </FrameLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
