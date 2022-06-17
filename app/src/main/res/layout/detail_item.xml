@@ -9,6 +9,8 @@
         android:id="@+id/detail_item"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/layer_list_toolbar"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"

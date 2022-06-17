@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import csu.soc.xwz.musicplayer.R;
+import csu.soc.xwz.musicplayer.activity.ChangePwdActivity;
 import csu.soc.xwz.musicplayer.activity.CollectActivity;
 import csu.soc.xwz.musicplayer.activity.LocalActivity;
 import csu.soc.xwz.musicplayer.activity.LoginActivity;
@@ -38,8 +39,7 @@ import csu.soc.xwz.musicplayer.utils.StaticValue;
 public class MineFragment extends Fragment implements View.OnClickListener{
 
     private LayoutInflater inflater;
-    private CollectMusicFragment collectMusicFragment;
-    private SelfBuildMusicFragment selfBuildMusicFragment;
+
     private Context mainActivity;
     private Button logButton;
     private Button recentButton;
@@ -49,7 +49,7 @@ public class MineFragment extends Fragment implements View.OnClickListener{
     private Button localButton;
     private ImageButton vipImageButton;
     private TextView musicNumText;
-
+    private ImageButton setImageButton;
     private RadioGroup twoGrop;
     protected RadioButton selfButton,collectButton;
     private ImageButton likeCountButton;
@@ -58,6 +58,12 @@ public class MineFragment extends Fragment implements View.OnClickListener{
      */
     public static Login_Receiver login_receiver;
     public static LocalBroadcastManager localBroadcastManager;
+
+    // 设置默认fragment
+    private FragmentManager fm;
+    private FragmentTransaction transaction;
+    private CollectMusicFragment collectMusicFragment;
+    private SelfFragment selfFragment;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -80,11 +86,19 @@ public class MineFragment extends Fragment implements View.OnClickListener{
 
         Log.e("点击自建歌单","______");
 
-//        selfButton.setOnClickListener(this);
-//        collectButton.setOnClickListener(this);
+        selfButton.setOnClickListener(this);
+        collectButton.setOnClickListener(this);
 
-        setDefaultFragment();
+        selfFragment = new SelfFragment();
+        collectMusicFragment = new CollectMusicFragment();
+        fm = getChildFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.add(R.id.framelayout,selfFragment).commit();
+        //设置我的fragment内所有按钮点击响应事件
+        setButtonClick();
+    }
 
+    private void setButtonClick() {
         //设置登录按钮点击事件
         logButton = getActivity().findViewById(R.id.unLogTip);
         logButton.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +108,7 @@ public class MineFragment extends Fragment implements View.OnClickListener{
                 startActivity(intent);
             }
         });
+
         //设置本地按钮点击事件
         localButton = getActivity().findViewById(R.id.local_music_btn);
         localButton.setOnClickListener(new View.OnClickListener() {
@@ -105,12 +120,14 @@ public class MineFragment extends Fragment implements View.OnClickListener{
             }
         });
 
+        //绑定我喜欢的音乐数目
         musicNumText = getActivity().findViewById(R.id.textView_my_like_music_count);
 
 
         //设置登录信息
         textView = getActivity().findViewById(R.id.userName);
 
+        //点击会员信息按钮
         vipImageButton = getActivity().findViewById(R.id.vipImageButton);
         vipImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +145,7 @@ public class MineFragment extends Fragment implements View.OnClickListener{
                 }
             }
         });
-
+        //我的收藏按钮
         shouCangButton = getActivity().findViewById(R.id.button3);
         shouCangButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +159,7 @@ public class MineFragment extends Fragment implements View.OnClickListener{
                 }
             }
         });
-
+        //最近播放按钮
         recentButton = getActivity().findViewById(R.id.recent_button);
         recentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,11 +175,12 @@ public class MineFragment extends Fragment implements View.OnClickListener{
 
             }
         });
+        //点击我的喜欢跳转到我的收藏
         likeCountButton = getActivity().findViewById(R.id.imageButton3);
         likeCountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),RecentlyPlayerActivity.class);
+                Intent intent = new Intent(getActivity(),CollectActivity.class);
                 if (textView.getText().equals("欢迎! admin")) {
                     intent.putExtra("userName","admin");
                     startActivity(intent);
@@ -171,32 +189,37 @@ public class MineFragment extends Fragment implements View.OnClickListener{
                 }
             }
         });
+        //设置个人信息按钮（可修改密码）
+        setImageButton = getActivity().findViewById(R.id.setImageButton);
+        setImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ChangePwdActivity.class);
+                if (textView.getText().equals("欢迎! admin")) {
+                    intent.putExtra("userName","admin");
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
-    // 设置默认fragment
-    private void setDefaultFragment() {
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        selfBuildMusicFragment = new SelfBuildMusicFragment();
-        transaction.add(R.id.framelayout,selfBuildMusicFragment).commit();
-    }
+
+
 
 
     @Override
     public void onClick(View v) {
-        FragmentManager fm = getChildFragmentManager();
+        fm = getChildFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-
-//        selfBuildMusicFragment = new SelfBuildMusicFragment();
-//        transaction.replace(R.id.framelayout,selfBuildMusicFragment);
-
         switch (v.getId()){
-            case R.id.self_button:
-                if (selfBuildMusicFragment == null){
-                    selfBuildMusicFragment = new SelfBuildMusicFragment();
-                }
-                transaction.replace(R.id.framelayout,selfBuildMusicFragment);
-                break;
-            case R.id.collect_button:
+        case R.id.self_button:
+            if (selfFragment == null){
+                selfFragment = new SelfFragment();
+            }
+            transaction.replace(R.id.framelayout,selfFragment);
+            break;
+        case R.id.collect_button:
                 if (collectMusicFragment == null){
                     collectMusicFragment = new CollectMusicFragment();
                 }

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-<!--    <style name="AppTheme" parent="Theme.AppCompat.Light">-->
-<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-<!--        &lt;!&ndash; 隐藏标题栏 &ndash;&gt;-->
-<!--        <item name="android:windowNoTitle">true</item>-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <!-- 隐藏标题栏 -->
+        <item name="android:windowNoTitle">true</item>
 
-<!--        &lt;!&ndash; enable window content transitions &ndash;&gt;-->
-<!--        <item name="android:windowContentTransitions">true</item>-->
+        <!-- enable window content transitions -->
+        <item name="android:windowContentTransitions">true</item>
 
-<!--        &lt;!&ndash; specify enter and exit transitions &ndash;&gt;-->
-<!--        &lt;!&ndash; options are: explode, slide, fade &ndash;&gt;-->
-<!--        <item name="android:windowEnterTransition">@transition/activity_fade</item>-->
-<!--        <item name="android:windowExitTransition">@transition/activity_slide</item>-->
-<!--        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>-->
+        <!-- specify enter and exit transitions -->
+        <!-- options are: explode, slide, fade -->
+        <item name="android:windowEnterTransition">@transition/activity_fade</item>
+        <item name="android:windowExitTransition">@transition/activity_slide</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
 
-<!--    </style>-->
+    </style>
 
     <style name="AppTheme.Detail" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -84,10 +84,10 @@
         <item name="android:minHeight">7dp</item>
         <item name="android:thumb">@drawable/ic_seek_bar</item>
     </style>
-    <style name="AppTheme" parent="XUITheme.Phone">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/littleGreen</item>
-    </style>
+<!--    <style name="AppTheme" parent="XUITheme.Phone">-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/littleGreen</item>-->
+<!--    </style>-->
 
 </resources>

@@ -1,6 +1,7 @@
 package csu.soc.xwz.musicplayer.Adapter;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,6 +102,8 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MyViewHolder
         holder.toolbar.setTitle(albumArrayList.get(position).getAlbumName());
         holder.toolbar.setSubtitle(albumArrayList.get(position).getNum() + " 首  " +
                 albumArrayList.get(position).getSinger());
+        holder.toolbar.setNavigationIcon(new BitmapDrawable(holder.itemView.getContext().getResources()
+                ,albumArrayList.get(position).getAlbumPicture()));
     }
 
     @Override

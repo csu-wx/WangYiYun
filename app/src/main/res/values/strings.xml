@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Player</string>
+    <string name="app_name">网抑云</string>
     <string name="music">本地</string>
     <string name="later">最近</string>
     <string name="collect">收藏</string>
@@ -16,8 +16,8 @@
     <string name="like_music_counts">0首</string>
     <string name="mine_download">下载</string>
     <string name="mine_purchased">已购</string>
-    <string name="mine_recent">最近播放</string>
-    <string name="mine_transceiver">我的电台</string>
+    <string name="mine_recent">最近</string>
+    <string name="mine_transceiver">电台</string>
     <string name="mine_create_song_menu">创建歌单</string>
     <string name="mine_import_song_menu">导入外部歌单</string>
     <string name="self_build_music_menu">自建歌单</string>

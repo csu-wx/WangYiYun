@@ -25,7 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 
-import com.xuexiang.xui.XUI;
+//import com.xuexiang.xui.XUI;
 
 import csu.soc.xwz.musicplayer.R;
 import csu.soc.xwz.musicplayer.databinding.ActivityDetailPlayerBinding;
@@ -62,7 +62,7 @@ public class DetailPlayerActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        XUI.initTheme(this);
+//        XUI.initTheme(this);
         super.onCreate(savedInstanceState);
         binding = ActivityDetailPlayerBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -233,8 +233,8 @@ public class DetailPlayerActivity extends AppCompatActivity implements View.OnCl
         binding.playerPage.playOrPauseBtn.setBackgroundResource(R.drawable.ic_zanting);
 
         //如果是默认图片则改成默认专辑图片
-        if (BaseActivity.myBinder.getMusicList().get(index).getAlbumBitmap().sameAs(MusicResolver.getBitmapFromDrawable(this,R.drawable.ic_music)))
-            binding.playerPage.sivIcon.setImageResource(R.drawable.default_record_album);
+        if (BaseActivity.myBinder.getMusicList().get(index).getAlbumBitmap().sameAs(MusicResolver.getBitmapFromDrawable(this,R.drawable.music_default)))
+            binding.playerPage.sivIcon.setImageResource(R.drawable.music_default);
         else
             binding.playerPage.sivIcon.setImageBitmap(BaseActivity.myBinder.getMusicList().get(index).getAlbumBitmap());
 

@@ -204,7 +204,7 @@ public class MusicService extends Service{
         isPlaying = false;
 
         // 初始化通知栏
-        initRemoteViews();
+//        initRemoteViews();
         Log.e("初始化通知栏","设置监听完成");
 
         mediaPlayer = new MediaPlayer();
@@ -213,10 +213,10 @@ public class MusicService extends Service{
         musicServicesBroadcastReceiver = new MusicServicesBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         //通知activity更新下方播放栏和播放界面的action
-        intentFilter.addAction(PLAY);
-        intentFilter.addAction(PREV);
-        intentFilter.addAction(NEXT);
-        intentFilter.addAction(CLOSE);
+//        intentFilter.addAction(PLAY);
+//        intentFilter.addAction(PREV);
+//        intentFilter.addAction(NEXT);
+//        intentFilter.addAction(CLOSE);
         Log.e("过滤器添加action",PLAY+" "+PREV+" "+NEXT+" "+CLOSE);
         //本地广播注册
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
@@ -224,14 +224,14 @@ public class MusicService extends Service{
          * 这里不能用本地广播，就用普通广播，否则无法收到广播消息
          *
          * **/
-        registerReceiver(musicServicesBroadcastReceiver,intentFilter);
+//        registerReceiver(musicServicesBroadcastReceiver,intentFilter);
         Log.e("本地广播注册","localBroadcastManager");
 
         //初始化
         musicArrayList = new ArrayList<>();
 
         //展示通知栏
-        initNotification();
+//        initNotification();
         Log.e("展示通知栏","");
 
         getMusicData();
@@ -540,7 +540,7 @@ public class MusicService extends Service{
             Intent intent = new Intent(MusicServiceReceiverAction);
             intent.putExtra(BROADCAST.TYPE_TYPENAME, BROADCAST.TYPE_PAUSE);
             localBroadcastManager.sendBroadcast(intent);
-            updateNotificationShow();
+//            updateNotificationShow();
         }
 
         @Override
@@ -576,7 +576,7 @@ public class MusicService extends Service{
             Intent intent = new Intent(MusicServiceReceiverAction);
             intent.putExtra(BROADCAST.TYPE_TYPENAME, BROADCAST.TYPE_SETPLAYBARVALUE);
             localBroadcastManager.sendBroadcast(intent);
-            updateNotificationShow();
+//            updateNotificationShow();
         }
 
         @Override

@@ -120,12 +120,9 @@ public class MainActivity extends BaseActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 mainViewPager2.setCurrentItem(tab.getPosition());
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -138,7 +135,6 @@ public class MainActivity extends BaseActivity {
                 mainTabLayout.selectTab(mainTabLayout.getTabAt(position));
             }
         });
-
     }
     //底部音乐播放控制
     @Override

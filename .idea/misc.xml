@@ -6,27 +6,33 @@
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/bottom_btn_selected_color.xml" value="0.1605" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/close_gray.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_down_arrows.xml" value="0.1" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_like.xml" value="0.1495" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_like_selected.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_music.xml" value="0.1" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_music_local.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_noti_last.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_seek_bar.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/ic_settings.xml" value="0.1605" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/layer_list_shadow.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/layer_list_toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/mine_constraint_layout_color_set.xml" value="0.147" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/mine_create_song_menu_button.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/mine_linear_layout_color_set.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/player_background.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/seekbar_progress.xml" value="0.1" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/song_menu_shape.xml" value="0.1745" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/tab_indicator.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/drawable/toolbar_text_color_selector.xml" value="0.1605" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_change_pwd.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_collect.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_detail.xml" value="0.15" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_detail_player.xml" value="0.15" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_local_ativity.xml" value="0.13253012048192772" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_login.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_main.xml" value="0.1578125" />
-        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_recently_player.xml" value="0.1" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_recently_player.xml" value="0.22" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_song_menu.xml" value="0.25" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/activity_vip_service.xml" value="0.18" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/album_item.xml" value="0.25" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/begin_player.xml" value="0.22" />
@@ -35,17 +41,21 @@
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/directory_item.xml" value="0.33" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_album_fragement.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_broadcast.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_collect.xml" value="0.1890625" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_collect_music.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_directory.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_library.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_mine.xml" value="0.25" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_self.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_self_build_music.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_singer.xml" value="0.1875" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/fragment_single_song.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/mine_self_menu.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/music_item.xml" value="0.171875" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/music_notification.xml" value="0.1640625" />
-        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/player_layout.xml" value="0.13385416666666666" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/player_layout.xml" value="0.25" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/recent_item.xml" value="0.1" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/self_item.xml" value="0.1890625" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/set_self_music_menu.xml" value="0.1" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/layout/singer_item.xml" value="0.171875" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/menu/album_item_menu.xml" value="0.20364583333333333" />
@@ -58,6 +68,7 @@
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/menu/recent_item_menu.xml" value="0.18" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/menu/singer_item_menu.xml" value="0.18888888888888888" />
         <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/menu/toolbar_menu.xml" value="0.18888888888888888" />
+        <entry key="..\:/Users/xueye/AndroidStudioProjects/MusicPlayer/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>

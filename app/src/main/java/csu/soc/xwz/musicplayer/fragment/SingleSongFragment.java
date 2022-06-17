@@ -179,7 +179,7 @@ public class SingleSongFragment extends Fragment {
         singleSongAdapter.setMyOnItemClickListener(new SingleSongAdapter.MyOnItemClickListener() {
             @Override
             public void OnItemClickListener(View v) {
-                //注意：此处通过 RecyclerView 的实例获取item的位置
+                //注意：此处通过 RecyclerView 的实例获取item的位置r
                 int position = singleSongRecyclerView.getChildAdapterPosition(v);
                 /*此处填写触发点击事件的代码*/
                 //回调

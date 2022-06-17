@@ -4,10 +4,12 @@
 <!--修改 activity_register.xml 为 LinearLayout 布局-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
     <include layout="@layout/main_title_bar"></include><!--引入标题栏-->
 
     <!--三个编辑框-->
@@ -80,16 +82,18 @@
         android:textColor="#000000"
         android:textColorHint="#a3a3a3"
         android:textSize="14sp"/>
+
     <Button
         android:id="@+id/btn_change_psw"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
         android:layout_marginTop="15dp"
+        android:layout_marginRight="35dp"
         android:background="@drawable/register_selector"
         android:text="修改"
         android:textColor="@android:color/white"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        tools:ignore="TouchTargetSizeCheck" />
 </LinearLayout>

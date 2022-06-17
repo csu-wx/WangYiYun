@@ -125,6 +125,7 @@ public class MusicResolver {
             album.setMusicArrayList(musics);
             album.setNum(musics.size());
             album.setSinger(musics.get(0).getAuthor());
+            album.setAlbumPicture(musics.get(0).getAlbumBitmap());
             albumArrayList.add(album);
         }
 
@@ -250,7 +251,8 @@ public class MusicResolver {
 //            // 建立新的bitmap，其内容是对原bitmap的缩放后的图
 //            albumPicture = Bitmap.createBitmap(albumPicture, 0, 0, width, height, matrix, false);
 
-            albumPicture = getBitmapFromDrawable(context, R.drawable.ic_music);
+//            albumPicture = getBitmapFromDrawable(context, R.drawable.ic_music);
+            albumPicture = getBitmapFromDrawable(context, R.drawable.music_default);
         }
         return albumPicture;
     }

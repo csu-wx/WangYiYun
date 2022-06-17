@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SongMenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="53dp"
+        android:background="@color/colorPrimaryLight">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/song_menu_toolbar"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:navigationIcon="@drawable/ic_arrows"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="歌单"
+            app:titleTextColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="24dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/default_record_album" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp">
+
+                <TextView
+                    android:id="@+id/textView_song_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:text="歌单名" />
+
+                <TextView
+                    android:id="@+id/textView_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2022年6月17日" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/song_menu_shape"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/song_menu_background" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

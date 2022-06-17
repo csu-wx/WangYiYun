@@ -1,5 +1,7 @@
 package csu.soc.xwz.musicplayer.pojo;
 
+import android.graphics.Bitmap;
+
 import com.github.promeg.pinyinhelper.Pinyin;
 
 import java.util.ArrayList;
@@ -17,6 +19,16 @@ public class Album {
     private int num;
     //包含的歌曲list
     private ArrayList<Music> musicArrayList;
+
+    private Bitmap albumPicture;
+
+    public Bitmap getAlbumPicture() {
+        return albumPicture;
+    }
+
+    public void setAlbumPicture(Bitmap albumPicture) {
+        this.albumPicture = albumPicture;
+    }
 
     public String getAlbumID() {
         return albumID;
