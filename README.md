@@ -3,4 +3,5 @@ MusicPlayer
 
 演示：
 
-![演示视频](https://user-images.githubusercontent.com/71335880/172882625-7c937a80-717d-408e-b59a-64ae1390180a.gif)
+![Screen_Recording_20220618-154600](https://user-images.githubusercontent.com/71335880/174428467-731a4cc2-5362-4bba-937c-d071b5cfa579.gif)
+
